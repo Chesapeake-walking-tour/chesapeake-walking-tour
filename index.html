@@ -67,11 +67,16 @@
     .close-button:hover {
       color: #666;
     }
-    
-    /* Remove whitespace below the image on mobile */
+
+    /* Responsive Styles */
     @media (max-width: 767px) {
-      body {
-        overflow-y: auto;
+      .bounding-box {
+        width: 2%;
+        height: 8%;
+      }
+
+      .modal {
+        max-width: 90%;
       }
     }
   </style>
@@ -80,13 +85,14 @@
   <div id="image-container">
     <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map.jpg" id="main-image">
     <!-- Add bounding boxes here -->
-    <div class="bounding-box" data-top="423" data-left="680" data-width="28" data-height="40"></div>
+    <div class="bounding-box" style="top: 70%; left: 47%;"></div>
     <!-- Add more bounding boxes as needed -->
   </div>
 
   <!-- Add modals here -->
   <div class="modal" id="modal1">
     <span class="close-button">&times;</span>
+    <h2>Modal 1</h2>
     <img src="/chesapeake-walking-tour/docs/assets/franklin_hall.png" alt="Modal Image 1">
   </div>
 
@@ -97,18 +103,6 @@
     const boundingBoxes = document.querySelectorAll('.bounding-box');
     const modals = document.querySelectorAll('.modal');
     const closeButton = document.querySelectorAll('.close-button');
-
-    // Set bounding box positions based on pixel values
-    boundingBoxes.forEach((box) => {
-      const top = box.dataset.top;
-      const left = box.dataset.left;
-      const width = box.dataset.width;
-      const height = box.dataset.height;
-      box.style.top = `${top}px`;
-      box.style.left = `${left}px`;
-      box.style.width = `${width}px`;
-      box.style.height = `${height}px`;
-    });
 
     // Add click event listener to each bounding box
     boundingBoxes.forEach((box, index) => {
