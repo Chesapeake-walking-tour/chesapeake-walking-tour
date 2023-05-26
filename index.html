@@ -42,7 +42,7 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       display: none;
       max-width: 80%;
-      width: 400px; 
+      width: 400px;
     }
 
     .modal h2 {
@@ -109,13 +109,8 @@
   <!-- Add more modals as needed -->
 
   <script>
-<<<<<<< HEAD
     // Get all the bounding boxes and modals
     const boundingBoxes = document.querySelectorAll('.bounding-box');
-=======
-   // Get all the bounding boxes and modals
-   const boundingBoxes = document.querySelectorAll('.bounding-box');
->>>>>>> parent of 6efecda (Update index.html)
     const modals = document.querySelectorAll('.modal');
     const closeButton = document.querySelectorAll('.close-button');
 
@@ -138,7 +133,6 @@
         // Hide the corresponding modal
         const modal = button.parentElement;
         modal.style.display = 'none';
-<<<<<<< HEAD
       });
     });
 
@@ -150,38 +144,6 @@
         }
       });
     });
-
-        // Center modal on screen based on user's zoom level
-        function centerModal() {
-=======
-      });
-    });
-
-    // Center modal on screen based on user's zoom level
-    function centerModal() {
->>>>>>> parent of 6efecda (Update index.html)
-      modals.forEach((modal) => {
-        const zoomFactor = window.innerWidth / window.outerWidth;
-        const modalWidth = modal.offsetWidth;
-        const modalHeight = modal.offsetHeight;
-        const leftPosition = (window.innerWidth / 2) - (modalWidth / 2 / zoomFactor);
-        const topPosition = (window.innerHeight / 2) - (modalHeight / 2 / zoomFactor);
-
-        modal.style.left = `${leftPosition}px`;
-        modal.style.top = `${topPosition}px`;
-      });
-    }
-
-<<<<<<< HEAD
-    window.addEventListener('resize', centerModal);
-
-
-=======
-    // Center modal on initial load and orientation change
-    window.addEventListener('load', centerModal);
-    window.addEventListener('orientationchange', centerModal);
->>>>>>> parent of 6efecda (Update index.html)
-
   </script>
 </body>
 </html>
