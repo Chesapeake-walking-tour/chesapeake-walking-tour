@@ -1,96 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SVG Image Map Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        #image-map {
-            position: relative;
-            width: 100%;
-            height: auto;
-        }
-
-        #image-map img {
-            width: 100%;
-            height: auto;
-        }
-
-        #image-map svg {
-            position: absolute;
+        .image-popup {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-        }
-
-        #image-map a {
-            display: block;
-        }
-
-        /* Style for the modal */
-        #myModal {
+            background-color: rgba(0, 0, 0, 0.9);
             display: none;
-            position: fixed;
-            z-index: 999;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
-
-        #myModal img {
+        
+        .image-popup img {
             max-width: 90%;
             max-height: 90%;
-            object-fit: contain;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
-
-        /* Media queries */
-        @media (max-width: 768px) {
-            /* Adjust the position of the SVG element for smaller screens */
-            #image-map svg {
-                position: static;
-            }
+        
+        .image-popup.active {
+            display: flex;
         }
     </style>
 </head>
 <body>
-    <div id="image-map">
-        <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map_rescaled_v1.png" alt="Your Image" />
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <!-- Define your shapes and coordinates here -->
-            <a href="javascript:void(0);" onclick="openModal('/chesapeake-walking-tour/docs/assets/franklin_hall.png')" ontouchstart="openModal('/chesapeake-walking-tour/docs/assets/franklin_hall.png')">
-                <rect x="1160" y="820" width="40" height="80" stroke="black" stroke-width="5" fill="transparent" />
-            </a>
-            <a xlink:href="https://example.com" target="_blank">
-                <circle cx="200" cy="150" r="50" fill="transparent" />
-            </a>
-        </svg>
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+        <image xlink:href="/chesapeake-walking-tour/docs/assets/walking_tour_map_rescaled_v1.png" width="800" height="600" />
 
-    <!-- Modal container -->
-    <div id="myModal" onclick="closeModal()">
-        <!-- Modal content (image) -->
-        <img id="modalImage" src="" alt="Modal Image">
+        <rect x="100" y="100" width="200" height="150" fill="transparent" stroke="red" stroke-width="2">
+            <title>Click to open popup image</title>
+        </rect>
+    </svg>
+
+    <div class="image-popup">
+        <img src="/chesapeake-walking-tour/docs/assets/franklin_hall.png" alt="Popup Image">
     </div>
 
     <script>
-        function openModal(imageUrl) {
-            var modal = document.getElementById("myModal");
-            var modalImage = document.getElementById("modalImage");
-            modal.style.display = "flex";
-            modalImage.src = imageUrl;
-        }
+        const rect = document.querySelector('rect');
+        const imagePopup = document.querySelector('.image-popup');
 
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            var modalImage = document.getElementById("modalImage");
-            modal.style.display = "none";
-            modalImage.src = "";
-        }
+        rect.addEventListener('click', () => {
+            imagePopup.classList.add('active');
+        });
+
+        imagePopup.addEventListener('click', () => {
+            imagePopup.classList.remove('active');
+        });
     </script>
 </body>
 </html>
