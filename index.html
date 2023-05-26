@@ -30,19 +30,29 @@
       cursor: pointer;
       /* Adjust the box styles as needed */
     }
+    .modal-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
 
     .modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       background-color: #fff;
       padding: 20px;
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      display: none;
       max-width: 80%;
-      width: 400px; 
+      width: 400px;
     }
 
     .modal h2 {
@@ -81,14 +91,14 @@
   </div>
 
   <!-- Add modals here -->
-  <div class="modal" id="modal1">
+  <div class="modal-container" id="modal-container1">
     <span class="close-button">&times;</span>
     <h2>Modal 1</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sapien a gravida mattis, massa justo tincidunt justo, nec porttitor libero risus non enim. Phasellus ac efficitur erat. Vivamus pulvinar sollicitudin eros id faucibus. Etiam vitae rhoncus dolor, eu tempor est. Duis at tempus neque. Etiam cursus, dolor ac commodo sollicitudin, dolor mauris pharetra mi, sed cursus enim sapien ac magna. Nunc cursus, ex vitae ultrices egestas, dui dolor feugiat erat, a iaculis felis odio quis velit. Sed in nibh ac diam pellentesque scelerisque. Vestibulum varius lorem ac diam malesuada pharetra.
 </p>
   </div>
 
-  <div class="modal" id="modal2">
+  <div class="modal-container" id="modal-container2">
     <span class="close-button">&times;</span>
     <h2>Modal 2</h2>
     <p>Additional information for modal 2.</p>
@@ -109,51 +119,35 @@
   <!-- Add more modals as needed -->
 
   <script>
-   // Get all the bounding boxes and modals
-   const boundingBoxes = document.querySelectorAll('.bounding-box');
-    const modals = document.querySelectorAll('.modal');
+    // Get all the bounding boxes and modal containers
+    const boundingBoxes = document.querySelectorAll('.bounding-box');
+    const modalContainers = document.querySelectorAll('.modal-container');
     const closeButton = document.querySelectorAll('.close-button');
 
     // Add click event listener to each bounding box
     boundingBoxes.forEach((box, index) => {
       box.addEventListener('click', () => {
-        // Hide all modals
-        modals.forEach((modal) => {
-          modal.style.display = 'none';
+        // Hide all modal containers
+        modalContainers.forEach((container) => {
+          container.style.opacity = '0';
+          container.style.visibility = 'hidden';
         });
 
-        // Show the corresponding modal
-        modals[index].style.display = 'block';
+        // Show the corresponding modal container
+        modalContainers[index].style.opacity = '1';
+        modalContainers[index].style.visibility = 'visible';
       });
     });
 
     // Add click event listener to each close button
     closeButton.forEach((button) => {
       button.addEventListener('click', () => {
-        // Hide the corresponding modal
-        const modal = button.parentElement;
-        modal.style.display = 'none';
+        // Hide the corresponding modal container
+        const container = button.closest('.modal-container');
+        container.style.opacity = '0';
+        container.style.visibility = 'hidden';
       });
     });
-
-    // Center modal on screen based on user's zoom level
-    function centerModal() {
-      modals.forEach((modal) => {
-        const zoomFactor = window.innerWidth / window.outerWidth;
-        const modalWidth = modal.offsetWidth;
-        const modalHeight = modal.offsetHeight;
-        const leftPosition = (window.innerWidth / 2) - (modalWidth / 2 / zoomFactor);
-        const topPosition = (window.innerHeight / 2) - (modalHeight / 2 / zoomFactor);
-
-        modal.style.left = `${leftPosition}px`;
-        modal.style.top = `${topPosition}px`;
-      });
-    }
-
-    // Center modal on initial load and orientation change
-    window.addEventListener('load', centerModal);
-    window.addEventListener('orientationchange', centerModal);
-
   </script>
 </body>
 </html>
