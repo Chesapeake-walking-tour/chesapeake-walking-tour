@@ -42,7 +42,7 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       display: none;
       max-width: 80%;
-      width: 400px;
+      width: 400px; 
     }
 
     .modal h2 {
@@ -144,6 +144,25 @@
         }
       });
     });
+
+        // Center modal on screen based on user's zoom level
+        function centerModal() {
+      modals.forEach((modal) => {
+        const zoomFactor = window.innerWidth / window.outerWidth;
+        const modalWidth = modal.offsetWidth;
+        const modalHeight = modal.offsetHeight;
+        const leftPosition = (window.innerWidth / 2) - (modalWidth / 2 / zoomFactor);
+        const topPosition = (window.innerHeight / 2) - (modalHeight / 2 / zoomFactor);
+
+        modal.style.left = `${leftPosition}px`;
+        modal.style.top = `${topPosition}px`;
+      });
+    }
+
+    window.addEventListener('resize', centerModal);
+
+
+
   </script>
 </body>
 </html>
