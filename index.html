@@ -73,9 +73,9 @@
   <div id="image-container">
     <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map.jpg" id="main-image">
     <!-- Add bounding boxes here -->
-    <div class="bounding-box" style="top: 45%; left: 32%; width: 6%; height: 6%;"></div>
-    <div class="bounding-box" style="top: 62%; left: 52%; width: 6%; height: 6%;"></div>
-    <div class="bounding-box" style="top: 72%; left: 34%; width: 6%; height: 6%;"></div>
+    <div class="bounding-box" data-top="560" data-left="400" data-width="120" data-height="120"></div>
+    <div class="bounding-box" data-top="780" data-left="800" data-width="120" data-height="120"></div>
+    <div class="bounding-box" data-top="900" data-left="480" data-width="120" data-height="120"></div>
     <!-- Add more bounding boxes as needed -->
   </div>
 
@@ -86,24 +86,6 @@
     <img src="/chesapeake-walking-tour/docs/assets/franklin_hall.png" alt="Modal Image 1">
   </div>
 
-  <div class="modal" id="modal2">
-    <span class="close-button">&times;</span>
-    <h2>Modal 2</h2>
-    <p>Additional information for modal 2.</p>
-  </div>
-
-  <div class="modal" id="modal3">
-    <span class="close-button">&times;</span>
-    <h2>Modal 3</h2>
-    <p>Additional information for modal 3.</p>
-  </div>
-
-
-  <div class="modal" id="modal4">
-    <span class="close-button">&times;</span>
-    <h2>Modal 4</h2>
-    <p>Additional information for modal 4.</p>
-  </div>
   <!-- Add more modals as needed -->
 
   <script>
@@ -111,6 +93,19 @@
     const boundingBoxes = document.querySelectorAll('.bounding-box');
     const modals = document.querySelectorAll('.modal');
     const closeButton = document.querySelectorAll('.close-button');
+
+    // Set bounding box positions based on pixel values
+    boundingBoxes.forEach((box) => {
+      const top = box.getAttribute('data-top');
+      const left = box.getAttribute('data-left');
+      const width = box.getAttribute('data-width');
+      const height = box.getAttribute('data-height');
+
+      box.style.top = `${top}px`;
+      box.style.left = `${left}px`;
+      box.style.width = `${width}px`;
+      box.style.height = `${height}px`;
+    });
 
     // Add click event listener to each bounding box
     boundingBoxes.forEach((box, index) => {
