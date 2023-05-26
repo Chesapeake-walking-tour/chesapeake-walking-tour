@@ -67,6 +67,13 @@
     .close-button:hover {
       color: #666;
     }
+    
+    /* Remove whitespace below the image on mobile */
+    @media (max-width: 767px) {
+      body {
+        overflow-y: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -74,6 +81,8 @@
     <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map.jpg" id="main-image">
     <!-- Add bounding boxes here -->
     <div class="bounding-box" data-top="560" data-left="400" data-width="120" data-height="120"></div>
+    <div class="bounding-box" data-top="780" data-left="800" data-width="120" data-height="120"></div>
+    <div class="bounding-box" data-top="900" data-left="480" data-width="120" data-height="120"></div>
     <!-- Add more bounding boxes as needed -->
   </div>
 
@@ -94,11 +103,10 @@
 
     // Set bounding box positions based on pixel values
     boundingBoxes.forEach((box) => {
-      const top = box.getAttribute('data-top');
-      const left = box.getAttribute('data-left');
-      const width = box.getAttribute('data-width');
-      const height = box.getAttribute('data-height');
-
+      const top = box.dataset.top;
+      const left = box.dataset.left;
+      const width = box.dataset.width;
+      const height = box.dataset.height;
       box.style.top = `${top}px`;
       box.style.left = `${left}px`;
       box.style.width = `${width}px`;
