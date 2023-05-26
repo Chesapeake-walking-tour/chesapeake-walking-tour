@@ -109,8 +109,8 @@
   <!-- Add more modals as needed -->
 
   <script>
-   // Get all the bounding boxes and modals
-   const boundingBoxes = document.querySelectorAll('.bounding-box');
+    // Get all the bounding boxes and modals
+    const boundingBoxes = document.querySelectorAll('.bounding-box');
     const modals = document.querySelectorAll('.modal');
     const closeButton = document.querySelectorAll('.close-button');
 
@@ -136,8 +136,17 @@
       });
     });
 
-    // Center modal on screen based on user's zoom level
-    function centerModal() {
+    // Close modal when clicking outside
+    window.addEventListener('click', (event) => {
+      modals.forEach((modal) => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+
+        // Center modal on screen based on user's zoom level
+        function centerModal() {
       modals.forEach((modal) => {
         const zoomFactor = window.innerWidth / window.outerWidth;
         const modalWidth = modal.offsetWidth;
@@ -150,9 +159,9 @@
       });
     }
 
-    // Center modal on initial load and orientation change
-    window.addEventListener('load', centerModal);
-    window.addEventListener('orientationchange', centerModal);
+    window.addEventListener('resize', centerModal);
+
+
 
   </script>
 </body>
