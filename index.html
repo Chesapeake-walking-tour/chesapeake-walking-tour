@@ -1,60 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .image-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .image-popup img {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .image-popup.active {
-            display: flex;
-        }
-    </style>
+  <title>Display Image on Mobile</title>
+  <style>
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map_rescaled_v1.png" alt="Walking Tour Map" style="width: 100%; height: auto;" />
-
-        <div class="bounding-box" style="position: absolute; left: 30%; top: 30%; width: 40%; height: 30%; border: 2px solid red;"></div>
-    </div>
-
-    <div class="image-popup">
-        <img src="/chesapeake-walking-tour/docs/assets/franklin_hall.png" alt="Popup Image">
-    </div>
-
-    <script>
-        const boundingBox = document.querySelector('.bounding-box');
-        const imagePopup = document.querySelector('.image-popup');
-
-        boundingBox.addEventListener('click', () => {
-            imagePopup.classList.add('active');
-        });
-
-        imagePopup.addEventListener('click', () => {
-            imagePopup.classList.remove('active');
-        });
-    </script>
+  <img src="path/to/your/image.jpg" alt="Image">
 </body>
 </html>
