@@ -32,10 +32,23 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: white;
+      background-color: #fff;
       padding: 20px;
-      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       display: none;
+      max-width: 80%;
+      width: 400px;
+    }
+
+    .modal h2 {
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    .modal p {
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .close-button {
@@ -43,16 +56,23 @@
       top: 10px;
       right: 10px;
       cursor: pointer;
+      font-size: 20px;
+      color: #999;
+    }
+
+    .close-button:hover {
+      color: #666;
     }
   </style>
 </head>
 <body>
   <div id="image-container">
-    <img src="/Users/michaelshagena/chesapeake_md_book_scraper/walking_tour_map.jpg" id="main-image">
+    <img src="walking_tour_map.jpg" id="main-image">
     <!-- Add bounding boxes here -->
     <div class="bounding-box" style="top: 70%; left: 47%; width: 2%; height: 8%;"></div>
     <div class="bounding-box" style="top: 70%; left: 49.5%; width: 1.5%; height: 4%;"></div>
     <div class="bounding-box" style="top:63%; left: 47.3%; width: 1.9%; height: 4%;"></div>
+    <div class="bounding-box" style="top:63%; left: 49.5%; width: 1.9%; height: 4%;"></div>
     <!-- Add more bounding boxes as needed -->
   </div>
 
@@ -73,7 +93,14 @@
   <div class="modal" id="modal3">
     <span class="close-button">&times;</span>
     <h2>Modal 3</h2>
-    <p>Additional information for modal 2.</p>
+    <p>Additional information for modal 3.</p>
+  </div>
+
+
+  <div class="modal" id="modal4">
+    <span class="close-button">&times;</span>
+    <h2>Modal 4</h2>
+    <p>Additional information for modal 4.</p>
   </div>
   <!-- Add more modals as needed -->
 
