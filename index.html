@@ -3,56 +3,82 @@
 <head>
   <title>Display Image on Mobile</title>
   <style>
-    .image-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .bounding-box {
+    .rect {
       position: absolute;
       border: 2px solid red;
-      pointer-events: none;
     }
 
-    .popup {
+    .popup-container {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: white;
       padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      z-index: 9999;
-      display: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
-    .popup img {
+    .popup-image {
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
     }
   </style>
   <script>
-    function showPopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "block";
+    function showPopup(event, imageURL) {
+      event.stopPropagation(); // Stop event propagation
+
+      var popupContainer = document.createElement('div');
+      popupContainer.className = 'popup-container';
+
+      var popupImage = document.createElement('img');
+      popupImage.src = imageURL;
+      popupImage.alt = 'Popup Image';
+      popupImage.className = 'popup-image';
+
+      popupContainer.appendChild(popupImage);
+      document.body.appendChild(popupContainer);
+
+      document.addEventListener('click', function(event) {
+        if (!popupContainer.contains(event.target)) {
+          document.body.removeChild(popupContainer);
+        }
+      });
     }
 
-    function hidePopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "none";
-    }
+    // Create multiple view boxes
+    window.addEventListener('DOMContentLoaded', function() {
+      var viewBoxes = [
+        { x: 2200, y: 1590, width: 140, height: 150, image: '/Users/michaelshagena/Documents/GitHub/chesapeake-walking-tour/docs/assets/franklin_hall.png' },
+        { x: 200, y: 100, width: 300, height: 200, image: 'path/to/image2.png' },
+        { x: 350, y: 150, width: 250, height: 180, image: 'path/to/image3.png' },
+        // Add more view boxes as needed
+      ];
+
+      viewBoxes.forEach(function(viewBox) {
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', 'rect');
+        svg.setAttribute('width', viewBox.width);
+        svg.setAttribute('height', viewBox.height);
+        svg.setAttribute('viewBox', '0 0 ' + viewBox.width + ' ' + viewBox.height);
+        svg.setAttribute('onclick', 'showPopup(event, "' + viewBox.image + '")');
+
+        var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('width', '100%');
+        rect.setAttribute('height', '100%');
+        rect.setAttribute('fill', 'transparent');
+
+        svg.appendChild(rect);
+        document.body.appendChild(svg);
+
+        svg.style.left = viewBox.x + 'px';
+        svg.style.top = viewBox.y + 'px';
+      });
+    });
   </script>
 </head>
 <body>
   <div class="image-container">
-    <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map_cropped.png" alt="Image">
-    <svg class="bounding-box" width="200" height="150" viewBox="0 0 200 150" onclick="showPopup()">
-      <rect width="100%" height="100%" fill="transparent" />
-    </svg>
-  </div>
-
-  <div id="popup" class="popup" onclick="hidePopup()">
-    <img src="/chesapeake-walking-tour/docs/assets/franklin_hall.png" alt="Popup Image">
+    <img src="f/chesapeake-walking-tour/docs/assets/walking_tour_map_cropped.png" alt="Image">
   </div>
 </body>
 </html>
