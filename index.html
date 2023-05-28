@@ -3,6 +3,11 @@
 <head>
   <title>Display Image on Mobile</title>
   <style>
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
     .bounding-box {
       position: absolute;
       border: 2px solid red;
@@ -39,7 +44,7 @@
   </script>
 </head>
 <body>
-  <div style="position: relative;">
+  <div class="image-container">
     <img src="/chesapeake-walking-tour/docs/assets/walking_tour_map_cropped.png" alt="Image">
     <svg class="bounding-box" width="200" height="150" viewBox="0 0 200 150" onclick="showPopup()">
       <rect width="100%" height="100%" fill="transparent" />
