@@ -27,6 +27,11 @@
     function showPopup(event, imageURL) {
       event.stopPropagation(); // Stop event propagation
 
+      var currentPopup = document.querySelector('.popup-container');
+      if (currentPopup) {
+        document.body.removeChild(currentPopup);
+      }
+
       var popupContainer = document.createElement('div');
       popupContainer.className = 'popup-container';
 
